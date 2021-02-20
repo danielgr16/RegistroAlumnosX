@@ -6,64 +6,91 @@
         <title>Alta de alumnos</title>
     </head>
     <body>
-        Matricula <br>
-        <input type="text" id="user"> <br>
-        Nombres <br>
+        Matrícula <br>
+        <input type="text" id="user" onkeyup="minus(this)"> <br>
+        Nombre(s) <br>
         <input type="text" id="first"> <br>
-        Apellidos <br>
-        <input type="text" id="last">
-
-        
+        Apellido(s) <br>
+        <input type="text" id="last"><br>
 
 
         <script>  
             //create CSV file data in an array  
-            var userName = document.getElementById("user").value;
-            var firstName = document.getElementById("first").value;
-            var lastName = document.getElementById("last").value;
+            
+            //var matricula = document.getElementById("user").value;
+            //var firstName = document.getElementById("first").value;
+            //var lastName = document.getElementById("last").value;
 
-            var csvFileData = new Array(['username','password','firstname','lastname','email','city']);
+            var csvFileData = [];
 
             function addrow() {
-                var csvFileData2 = new Array ([userName,'123456',firstName,lastName,userName+'@tij.xochicalco.edu.mx','Tijuana']);
-                csvFileData.concat(csvFileData2);
+                if (document.getElementById("user").value != "" && document.getElementById("first").value != "" && document.getElementById("last").value != ""){
+                    csvFileData.push([
+                        document.getElementById("user").value,
+                        '123456',
+                        document.getElementById("first").value,
+                        document.getElementById("last").value,
+                        document.getElementById("user").value+'@tij.xochicalco.edu.mx',
+                        'Tijuana'
+                    ]);
+
+                    document.getElementById("user").value = "";
+                    document.getElementById("first").value = "";
+                    document.getElementById("last").value = "";
+
+                    document.getElementById("user").focus();
+                }
+                else{
+                    alert("Debe rellenar todos los campos");
+                }
+
             }
                 
             //create a user-defined function to download CSV file   
             function download_csv_file() {  
-              
-                
-                
-                //var correo = username+
 
-                
-                //define the heading for each row of the data  
-                //var csv = 'username,password,firstname,lastname,email,city\n';  
+                    //define the heading for each row of the data  
+                    var csv = 'username,password,firstname,lastname,email,city\n';  
 
-                  
-                //merge the data with CSV  
-                // csvFileData.forEach(function(row) {  
-                //     csvFileData += row.join(',');  
-                //     csvFileData += "\n";  
-                // });
-               
-                //display the created CSV data on the web browser   
-                document.write(csvFileData);  
+                    //merge the data with CSV  
+                    csvFileData.forEach(function(row) {  
+                        csv += row.join(',');  
+                        csv += "\n";  
+                    });
               
-                 
-                var hiddenElement = document.createElement('a');  
-                hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvFileData);  
-                hiddenElement.target = '_blank';  
+                    var hiddenElement = document.createElement('a');  
+                    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
                   
-                //provide the name for the CSV file to be downloaded  
-                hiddenElement.download = 'ProyectoAlta.csv';  
-                hiddenElement.click();  
-            }  
+                    //provide the name for the CSV file to be downloaded  
+                    hiddenElement.download = 'alta-moodle.csv';  
+                    hiddenElement.click();  
+
+                    var csv = 'Nombre para mostrar,Puesto,Departamento,Número del trabajo,Teléfono del trabajo,Fax,Dirección de correo electrónico alternativa,Dirección,Ciudad,Estado o provincia,Código postal,País o región\n';  
+
+                    //merge the data with CSV  
+                    csvFileData.forEach(function(row) {  
+                        csv += row.join(',');
+                        csv += "\n";  
+                    });
+
+                    var hiddenElement = document.createElement('a');  
+                    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+
+                    //provide the name for the CSV file to be downloaded  
+                    hiddenElement.download = 'alta-office.csv';  
+                    hiddenElement.click();
+            }
+
+            //lowercase function
+            function minus(e) {
+                e.value = e.value.toLowerCase();
+            }
+
         </script>  
 
 
         
         <button onclick="addrow()"> Agregar </button> 
-        <button onclick="download_csv_file()"> Download CSV </button> 
+        <button onclick="download_csv_file()"> Descargar CSV </button> 
     </body>
 </html>
