@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Alta de alumnos</title>
+    </head>
+    <body>
+        Matricula <br>
+        <input type="text" id="user"> <br>
+        Nombres <br>
+        <input type="text" id="first"> <br>
+        Apellidos <br>
+        <input type="text" id="last">
+
+        
+
+
+        <script>  
+            //create CSV file data in an array  
+            var userName = document.getElementById("user").value;
+            var firstName = document.getElementById("first").value;
+            var lastName = document.getElementById("last").value;
+
+            var csvFileData = new Array(['username','password','firstname','lastname','email','city']);
+
+            function addrow() {
+                var csvFileData2 = new Array ([userName,'123456',firstName,lastName,userName+'@tij.xochicalco.edu.mx','Tijuana']);
+                csvFileData.concat(csvFileData2);
+            }
+                
+            //create a user-defined function to download CSV file   
+            function download_csv_file() {  
+              
+                
+                
+                //var correo = username+
+
+                
+                //define the heading for each row of the data  
+                //var csv = 'username,password,firstname,lastname,email,city\n';  
+
+                  
+                //merge the data with CSV  
+                // csvFileData.forEach(function(row) {  
+                //     csvFileData += row.join(',');  
+                //     csvFileData += "\n";  
+                // });
+               
+                //display the created CSV data on the web browser   
+                document.write(csvFileData);  
+              
+                 
+                var hiddenElement = document.createElement('a');  
+                hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvFileData);  
+                hiddenElement.target = '_blank';  
+                  
+                //provide the name for the CSV file to be downloaded  
+                hiddenElement.download = 'ProyectoAlta.csv';  
+                hiddenElement.click();  
+            }  
+        </script>  
+
+
+        
+        <button onclick="addrow()"> Agregar </button> 
+        <button onclick="download_csv_file()"> Download CSV </button> 
+    </body>
+</html>
