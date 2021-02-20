@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Alta de alumnos</title>
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -64,19 +64,19 @@
      
         
 
+        <button onclick="addrow()" id="btnadd"> Agregar </button> 
+        <button onclick="download_csv_file()" id="btndownload"> Descargar CSV </button> 
 
         <script>  
-            //create CSV file data in an array  
-            
-            //var matricula = document.getElementById("user").value;
-            //var firstName = document.getElementById("first").value;
-            //var lastName = document.getElementById("last").value;
+            //create CSV file data in an array
 
-            var csvFileData = [];
+            var csvFileDataMoodle = [];
+            var csvFileDataOffice = [];
+            document.getElementById("btndownload").disabled = true;
 
             function addrow() {
                 if (document.getElementById("user").value != "" && document.getElementById("first").value != "" && document.getElementById("last").value != ""){
-                    csvFileData.push([
+                    csvFileDataMoodle.push([
                         document.getElementById("user").value,
                         '123456',
                         document.getElementById("first").value,
@@ -85,11 +85,32 @@
                         'Tijuana'
                     ]);
 
+                    csvFileDataOffice.push([
+                        document.getElementById("user").value+'@tij.xochicalco.edu.mx',
+                        document.getElementById("first").value,
+                        document.getElementById("last").value,
+                        document.getElementById("first").value+' '+document.getElementById("last").value,
+                        'Alumno',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        ''
+                    ]);
+
                     document.getElementById("user").value = "";
                     document.getElementById("first").value = "";
                     document.getElementById("last").value = "";
 
                     document.getElementById("user").focus();
+
+                    document.getElementById("btndownload").disabled = false;
                 }
                 else{
                     alert("Debe rellenar todos los campos");
@@ -100,11 +121,14 @@
             //create a user-defined function to download CSV file   
             function download_csv_file() {  
 
+                    //cbMoodle
+                    //cbOffice
+
                     //define the heading for each row of the data  
                     var csv = 'username,password,firstname,lastname,email,city\n';  
 
                     //merge the data with CSV  
-                    csvFileData.forEach(function(row) {  
+                    csvFileDataMoodle.forEach(function(row) {  
                         csv += row.join(',');  
                         csv += "\n";  
                     });
@@ -116,10 +140,10 @@
                     hiddenElement.download = 'alta-moodle.csv';  
                     hiddenElement.click();  
 
-                    var csv = 'Nombre para mostrar,Puesto,Departamento,Número del trabajo,Teléfono del trabajo,Fax,Dirección de correo electrónico alternativa,Dirección,Ciudad,Estado o provincia,Código postal,País o región\n';  
+                    var csv = 'Nombre de usuario,Nombre,Apellido,Nombre para mostrar,Puesto,Departamento,Número del trabajo,Teléfono de la oficina,Teléfono móvil,Fax,Dirección de correo electrónico alternativa,Dirección,Ciudad,Estado o provincia,Código postal,País o región\n';  
 
                     //merge the data with CSV  
-                    csvFileData.forEach(function(row) {  
+                    csvFileDataOffice.forEach(function(row) {
                         csv += row.join(',');
                         csv += "\n";  
                     });
