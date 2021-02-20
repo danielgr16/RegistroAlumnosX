@@ -4,14 +4,65 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Alta de alumnos</title>
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"/>
+        <link rel="stylesheet" href="css/mdb.min.css" />
+        <link rel="stylesheet" href="css/master.css" />
     </head>
     <body>
-        Matrícula <br>
-        <input type="text" id="user" onkeyup="minus(this)"> <br>
-        Nombre(s) <br>
-        <input type="text" id="first"> <br>
-        Apellido(s) <br>
-        <input type="text" id="last"><br>
+        <div class="container" class="cont-main">
+            <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
+              <div class="text-center">
+                <div class="form-outline">
+                    <input type="text" id="user" class="form-control" onkeyup="minus(this)"/>
+                    <label class="form-label" for="form1">Matricula</label>
+                </div>
+                <div class="form-outline">
+                    <input type="text" id="first" class="form-control" />
+                    <label class="form-label" for="form1">Nombre</label>
+                </div>
+                <div class="form-outline">
+                    <input type="text" id="last" class="form-control" />
+                    <label class="form-label" for="form1">Apellido</label>
+                </div>
+                
+        
+                <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="cbmoodle"
+                    />
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Moodle
+                    </label>
+                  </div>
+                  
+                  <!-- Checked checkbox -->
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="cboffice"
+                      checked
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Office
+                    </label>
+                  </div>
+              </div>
+
+              <button type="button" class="btn" onclick="addrow()" id="btnadd">AGREGAR</button>
+              <button type="button" class="btn btn-primary" onclick="download_csv_file()" id="btndownlaoad">DESCARGAR CSV</button>
+
+            </div>
+          </div>
+     
+        
 
 
         <script>  
@@ -89,8 +140,15 @@
         </script>  
 
 
-        
+<!--         
         <button onclick="addrow()"> Agregar </button> 
-        <button onclick="download_csv_file()"> Descargar CSV </button> 
+        <button onclick="download_csv_file()"> Descargar CSV </button>  -->
+
+
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+        <!-- Custom scripts -->
+        <script type="text/javascript"></script>
+
+
     </body>
 </html>
