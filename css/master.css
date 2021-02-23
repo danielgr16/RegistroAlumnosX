@@ -1,0 +1,30 @@
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+#btndownload {
+
+}
+
+#btnAdd {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%)!important;
+    background-color: #f0f0f0; 
+    margin-right: 5px !important;
+}
+
+#btnAdd:hover {
+    /* box-shadow: 0 1px 5px 0 rgb(0 0 0 / 30%)!important; */
+    background-color: #e2e2e2; 
+}
+
+.btn-inactive {
+    pointer-events: none;
+    background-color: #1970ff61;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%)!important;
+}
+
+.btn-active {
+    pointer-events: all !important;
+    background-color: #1266f1 !important;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%)!important;
+}
