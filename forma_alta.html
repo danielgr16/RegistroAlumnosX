@@ -57,7 +57,7 @@
               </div>
 
               <button type="button" class="btn" onclick="addrow()" id="btnadd">AGREGAR</button>
-              <button type="button" class="btn btn-primary" onclick="download_csv_file()" id="btndownlaoad">DESCARGAR CSV</button>
+              <button type="button" class="btn btn-primary" onclick="download_csv_file()" id="btndownload">DESCARGAR CSV</button>
 
             </div>
           </div>
@@ -76,55 +76,65 @@
 
             function addrow() {
                 if (document.getElementById("user").value != "" && document.getElementById("first").value != "" && document.getElementById("last").value != ""){
-                    csvFileDataMoodle.push([
-                        document.getElementById("user").value,
-                        '123456',
-                        document.getElementById("first").value,
-                        document.getElementById("last").value,
-                        document.getElementById("user").value+'@tij.xochicalco.edu.mx',
-                        'Tijuana'
-                    ]);
+                    if(document.getElementById("cbmoodle").checked == true || document.getElementById("cboffice").checked == true){
+                        if(document.getElementById("cbmoodle").checked == true){
+                            csvFileDataMoodle.push([
+                                document.getElementById("user").value,
+                                '123456',
+                                document.getElementById("first").value,
+                                document.getElementById("last").value,
+                                document.getElementById("user").value+'@tij.xochicalco.edu.mx',
+                                'Tijuana'
+                            ]);
+                        }
 
-                    csvFileDataOffice.push([
-                        document.getElementById("user").value+'@tij.xochicalco.edu.mx',
-                        document.getElementById("first").value,
-                        document.getElementById("last").value,
-                        document.getElementById("first").value+' '+document.getElementById("last").value,
-                        'Alumno',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        ''
-                    ]);
+                        if(document.getElementById("cboffice").checked == true){
+                            csvFileDataOffice.push([
+                                document.getElementById("user").value+'@tij.xochicalco.edu.mx',
+                                document.getElementById("first").value,
+                                document.getElementById("last").value,
+                                document.getElementById("first").value+' '+document.getElementById("last").value,
+                                'Alumno',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                ''
+                            ]);
+                        }
 
-                    document.getElementById("user").value = "";
-                    document.getElementById("first").value = "";
-                    document.getElementById("last").value = "";
+  
+                        document.getElementById("user").value = "";
+                        document.getElementById("first").value = "";
+                        document.getElementById("last").value = "";
 
-                    document.getElementById("user").focus();
+                        document.getElementById("user").focus();
 
-                    document.getElementById("btndownload").disabled = false;
+                        document.getElementById("btndownload").disabled = false;
+                    }      
+                    else{
+                        alert("Seleccione al menos una opción para agregar alumnos");
+                    }
                 }
                 else{
                     alert("Debe rellenar todos los campos");
                 }
-
             }
                 
             //create a user-defined function to download CSV file   
             function download_csv_file() {  
 
-                    //cbMoodle
-                    //cbOffice
+                //cbMoodle
+                //cbOffice
 
-                    //define the heading for each row of the data  
+                if(csvFileDataMoodle.length > 0){
+                    //define the heading for each row of the data
                     var csv = 'username,password,firstname,lastname,email,city\n';  
 
                     //merge the data with CSV  
@@ -132,14 +142,16 @@
                         csv += row.join(',');  
                         csv += "\n";  
                     });
-              
+                    
                     var hiddenElement = document.createElement('a');  
                     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-                  
+                        
                     //provide the name for the CSV file to be downloaded  
                     hiddenElement.download = 'alta-moodle.csv';  
                     hiddenElement.click();  
+                }
 
+                if(csvFileDataOffice.length > 0){
                     var csv = 'Nombre de usuario,Nombre,Apellido,Nombre para mostrar,Puesto,Departamento,Número del trabajo,Teléfono de la oficina,Teléfono móvil,Fax,Dirección de correo electrónico alternativa,Dirección,Ciudad,Estado o provincia,Código postal,País o región\n';  
 
                     //merge the data with CSV  
@@ -154,6 +166,7 @@
                     //provide the name for the CSV file to be downloaded  
                     hiddenElement.download = 'alta-office.csv';  
                     hiddenElement.click();
+                }
             }
 
             //lowercase function
