@@ -13,19 +13,24 @@
     </head>
     <body>
         <div class="container cont-main">
-            <div class="card mt-5 offset-md-3 col-6 rounded-3">
+            <div class="card mt-5 offset-md-1 offset-lg-2 offset-xl-3 col-13 col-sm-12 col-md-10 col-lg-8 col-xl-6 rounded-3">
                 <div class="card-body p-4">
-                    <h5 class="card-title text-center mt-1">Alta de usuarios</h5>
+                    <h3 class="card-title text-center mt-2">Alta de usuarios</h3>
                     
-                    <div class="form-outline offset-1 col-10 mt-4">
+                    <div class="form-check form-switch col-sm-1 mt-4">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Usuario temporal</label>
+                    </div>
+
+                    <div class="form-outline offset-sm-1 col-12 col-sm-10 mt-3">
                         <input type="text" id="user" class="form-control" onkeyup="minus(this)"/>
                         <label class="form-label" for="form1">Matricula</label>
                     </div>
-                    <div class="form-outline offset-1 col-10 mt-3">
+                    <div class="form-outline offset-sm-1 col-12 col-sm-10 mt-3">
                         <input type="text" id="first" class="form-control" />
                         <label class="form-label" for="form1">Nombre</label>
                     </div>
-                    <div class="form-outline offset-1 col-10 mt-3">
+                    <div class="form-outline offset-sm-1 col-12 col-sm-10 mt-3">
                         <input type="text" id="last" class="form-control" />
                         <label class="form-label" for="form1">Apellido</label>
                     </div>
@@ -54,22 +59,43 @@
                         </label>
                     </div>
 
-                    <div class="row mt-4 mb-4">
-                        <div class="col-5 offset-1">
+                    <div class="row mt-4 mb-5">
+                        <div class="col-10 col-md-6 col-lg-5 col-xl-5 offset-sm-1 offset-sm-1 col-12 col-sm-10">
                             <div class="p-1">
                                 <a class="btn btn-primary text-dark mt-3 w-100" id="btnAdd" href="#!" onclick="addrow()" role="button"><i class="fas fa-user-plus me-2"></i>AGREGAR</a>  
                             </div>
                         </div>
-                        <div class="col-5">
-                            <div class="p-1">
-                                <a class="btn btn-primary mt-3 w-100 btn-inactive" href="#!" onclick="download_csv_file()" id="btndownload" role="button"><i class="fas fa-download me-2"></i>DESCARGAR CSV</a>
+                    </div>
+                    <hr>
+
+                    <div class="row mt-5">
+                        <div class="col-10 offset-sm-1 mb-3">
+                            <span>Seleccione la plataforma de Moodle en que se daran de alta los usuarios:</span>
+                        </div>
+                        <div class="col-10 offset-sm-1 w-100">
+                            <div class="btn-group">
+                                <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked/>
+                                <label class="btn btn-secondary" for="option1">PREPARATORIA</label>
+                              
+                                <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" />
+                                <label class="btn btn-secondary" for="option2">LICENCIATURA</label>
+                              
+                                <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" />
+                                <label class="btn btn-secondary" for="option3">POSGRADOS</label>
                             </div>
+                        </div>
+                    </div>                    
+                    <div class="row">
+                        <div class="col-10 offset-sm-1 mt-4 mb-2">
+                            <span>Los usuarios se daran de alta en <span id="grado"></span>, haga clic en descargar y envie los archivos al correo <strong>informaticatij@xochicalco.edu.mx</strong></span>
+                        </div>
+                        <div class="mb-4 offset-sm-1 offset-md-6 offset-lg-6 offset-xl-6 col-12 col-sm-10 col-md-5 col-lg-5 col-xl-5">
+                            <a class="btn btn-primary mt-3 w-100 btn-inactive" href="#!" onclick="download_csv_file()" id="btndownload" role="button"><i class="fas fa-download me-2"></i>DESCARGAR CSV</a>
                         </div>
                     </div>
                 </div>
             </div>
           </div>
-     
         
 
         <!-- <button onclick="addrow()" id="btnadd"> Agregar </button> 
