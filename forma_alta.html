@@ -13,16 +13,16 @@
     </head>
     <body>
         <div class="container cont-main">
-            <div class="card mt-5 offset-md-1 offset-lg-2 offset-xl-3 col-13 col-sm-12 col-md-10 col-lg-8 col-xl-6 rounded-3">
+            <div class="card mt-5 offset-md-1 offset-xl-2 col-13 col-sm-12 col-md-10 col-xl-8 rounded-3">
                 <div class="card-body p-4">
                     <h3 class="card-title text-center mt-2">Alta de usuarios</h3>
                     
-                    <div class="form-check form-switch col-sm-1 mt-4">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                    <div class="form-check form-switch offset-sm-1 col-sm mt-4 mb-4">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="switch_temp()"/>
                         <label class="form-check-label" for="flexSwitchCheckDefault">Usuario temporal</label>
                     </div>
 
-                    <div class="form-outline offset-sm-1 col-12 col-sm-10 mt-3">
+                    <div class="form-outline offset-sm-1 col-12 col-sm-10 mt-3" id="matriculatxtbx">
                         <input type="text" id="user" class="form-control" onkeyup="minus(this)"/>
                         <label class="form-label" for="form1">Matricula</label>
                     </div>
@@ -35,32 +35,36 @@
                         <label class="form-label" for="form1">Apellido</label>
                     </div>
                   
-                    <div class="form-check mt-5" style="margin-left: 5rem !important;">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="cbmoodle"
-                        checked
-                        />
-                        <label class="form-check-label" for="flexCheckChecked">
-                        Agregar a Moodle
-                        </label>
+                    <div class="col offset-sm-1" id="checkMoodle">
+                        <div class="form-check mt-5" style="margin-left: 1rem !important;">
+                            <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="cbmoodle"
+                            checked
+                            />
+                            <label class="form-check-label" for="flexCheckChecked">
+                            Agregar a Moodle
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-check offset-1 mt-2" style="margin-left: 5rem !important;">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="cboffice"
-                        />
-                        <label class="form-check-label" for="flexCheckDefault">
-                        Agregar a Office
-                        </label>
+                    <div class="col offset-sm-1 checkMoodleOffice" id="checkOffice">
+                        <div class="form-check offset-sm-1 mt-2" style="margin-left: 1rem !important;">
+                            <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="cboffice"
+                            />
+                            <label class="form-check-label" for="flexCheckDefault">
+                            Agregar a Office
+                            </label>
+                        </div>
                     </div>
 
                     <div class="row mt-4 mb-5">
-                        <div class="col-10 col-md-6 col-lg-5 col-xl-5 offset-sm-1 offset-sm-1 col-12 col-sm-10">
+                        <div class="offset-sm-1 offset-sm-1 col col-sm-10 col-md-5 col-lg-4">
                             <div class="p-1">
                                 <a class="btn btn-primary text-dark mt-3 w-100" id="btnAdd" href="#!" onclick="addrow()" role="button"><i class="fas fa-user-plus me-2"></i>AGREGAR</a>  
                             </div>
@@ -68,20 +72,50 @@
                     </div>
                     <hr>
 
-                    <div class="row mt-5">
+                    <div class="row mt-5 d-none" id="gradoMoodle">
+                    <!-- <div class="row mt-5" id="gradoMoodle"> -->
                         <div class="col-10 offset-sm-1 mb-3">
                             <span>Seleccione la plataforma de Moodle en que se daran de alta los usuarios:</span>
                         </div>
-                        <div class="col-10 offset-sm-1 w-100">
-                            <div class="btn-group">
+                        <div class="col-10 offset-sm-1 w-100 d-none d-sm-block">
+                            <div class="btn-group col-10">
                                 <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked/>
-                                <label class="btn btn-secondary" for="option1">PREPARATORIA</label>
+                                <label class="btn btn-secondary" for="option1">LICENCIATURA</label>
                               
                                 <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" />
-                                <label class="btn btn-secondary" for="option2">LICENCIATURA</label>
+                                <label class="btn btn-secondary" for="option2">PREPARATORIA</label>
                               
                                 <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" />
                                 <label class="btn btn-secondary" for="option3">POSGRADOS</label>
+                            </div>
+                        </div>
+                        <div class="col-10 offset-sm-1 w-100 d-block d-sm-none">
+                            <div class="btn-group col-10 shadow-0 mb-2">
+                                <input
+                                    class="form-check-input ms-2"
+                                    type="radio"
+                                    name="flexRadioDefault"
+                                    id="flexRadioDefault1"
+                                />
+                                <label class="form-check-label ms-2" for="flexRadioDefault1"> Licenciatura </label>
+                            </div>
+                            <div class="btn-group col-10 shadow-0 mb-2">
+                                <input
+                                    class="form-check-input ms-2"
+                                    type="radio"
+                                    name="flexRadioDefault"
+                                    id="flexRadioDefault1"
+                                />
+                                <label class="form-check-label ms-2" for="flexRadioDefault1"> Preparatoria </label>
+                            </div>
+                            <div class="btn-group col-10 shadow-0 mb-2">
+                                <input
+                                    class="form-check-input ms-2"
+                                    type="radio"
+                                    name="flexRadioDefault"
+                                    id="flexRadioDefault1"
+                                />
+                                <label class="form-check-label ms-2" for="flexRadioDefault1"> Posgrados </label>
                             </div>
                         </div>
                     </div>                    
@@ -89,13 +123,13 @@
                         <div class="col-10 offset-sm-1 mt-4 mb-2">
                             <span>Los usuarios se daran de alta en <span id="grado"></span>, haga clic en descargar y envie los archivos al correo <strong>informaticatij@xochicalco.edu.mx</strong></span>
                         </div>
-                        <div class="mb-4 offset-sm-1 offset-md-6 offset-lg-6 offset-xl-6 col-12 col-sm-10 col-md-5 col-lg-5 col-xl-5">
+                        <div class="mb-4 offset-sm-1 offset-md-6 offset-lg-7 col-12 col-sm-10 col-md-5 col-lg-4">
                             <a class="btn btn-primary mt-3 w-100 btn-inactive" href="#!" onclick="download_csv_file()" id="btndownload" role="button"><i class="fas fa-download me-2"></i>DESCARGAR CSV</a>
                         </div>
                     </div>
                 </div>
             </div>
-          </div>
+        </div>
         
 
         <!-- <button onclick="addrow()" id="btnadd"> Agregar </button> 
@@ -108,10 +142,46 @@
             var csvFileDataOffice = [];
             document.getElementById("btndownload").disabled = true;
 
+            var boolTemporal = 0;
+
+            function switch_temp() {
+                if (boolTemporal == 0) {
+                    boolTemporal = 1;
+
+                    document.getElementById("matriculatxtbx").style.display = "none";
+                    document.getElementById("checkMoodle").style.display = "none";
+                    document.getElementById("checkOffice").style.display = "none";
+                } else {
+                    boolTemporal = 0;
+
+                    document.getElementById("matriculatxtbx").style.display = "block";
+                    document.getElementById("checkMoodle").style.display = "block";
+                    document.getElementById("checkOffice").style.display = "block";
+                }
+            }
+
+            function mostrar_grados() {
+
+                let div = document.getElementById("grado");
+                div.innerHTML = "<div> moodle </div>";
+            }
+
+            function mostrar_seleccion_grado() {
+                if (boolTemporal == 0) {
+                    boolTemporal = 1;
+
+                    document.getElementById("matriculatxtbx").style.display = "none";
+                } else {
+                    boolTemporal = 0;
+
+                    document.getElementById("matriculatxtbx").style.display = "block";
+                }
+            }
+
             function addrow() {
                 if (document.getElementById("user").value != "" && document.getElementById("first").value != "" && document.getElementById("last").value != ""){
                     if(document.getElementById("cbmoodle").checked == true || document.getElementById("cboffice").checked == true){
-                        if(document.getElementById("cbmoodle").checked == true){
+                        if(document.getElementById("cbmoodle").checked == true) {
                             csvFileDataMoodle.push([
                                 document.getElementById("user").value,
                                 '123456',
@@ -120,9 +190,12 @@
                                 document.getElementById("user").value+'@tij.xochicalco.edu.mx',
                                 'Tijuana'
                             ]);
+
+                            document.getElementById("gradoMoodle").classList.remove('d-none');
+                            document.getElementById("gradoMoodle").classList.add('d-block');
                         }
 
-                        if(document.getElementById("cboffice").checked == true){
+                        if(document.getElementById("cboffice").checked == true) {
                             csvFileDataOffice.push([
                                 document.getElementById("user").value+'@tij.xochicalco.edu.mx',
                                 document.getElementById("first").value,
@@ -151,6 +224,7 @@
                         document.getElementById("user").focus();
 
                         document.getElementById("btndownload").className += " btn-active";
+                        mostrar_grados("of");
                     }      
                     else{
                         alert("Seleccione al menos una opción para agregar alumnos");
