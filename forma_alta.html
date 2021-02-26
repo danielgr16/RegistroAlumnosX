@@ -95,6 +95,7 @@
                     </div>
                 </div>
             </div>
+            <div id="usuarios"></div>
           </div>
         
 
@@ -106,6 +107,7 @@
 
             var csvFileDataMoodle = [];
             var csvFileDataOffice = [];
+            var idFilaMoodle = 0;
             document.getElementById("btndownload").disabled = true;
 
             function addrow() {
@@ -147,10 +149,13 @@
                         document.getElementById("user").value = "";
                         document.getElementById("first").value = "";
                         document.getElementById("last").value = "";
-
                         document.getElementById("user").focus();
-
                         document.getElementById("btndownload").className += " btn-active";
+
+                        
+                        idFilaMoodle++;
+                        var user = document.getElementById("usuarios");
+                        user.insertAdjacentHTML("beforeend", "<p>" + idFilaMoodle + ".- " +csvFileDataMoodle[csvFileDataMoodle.length - 1] + "<button>Eliminar</button></p>");
                     }      
                     else{
                         alert("Seleccione al menos una opción para agregar alumnos");
@@ -201,6 +206,20 @@
                     hiddenElement.download = 'alta-office.csv';  
                     hiddenElement.click();
                 }
+
+                /*if(csvFileDataOffice.length > 0 || csvFileDataMoodle.length > 0){
+                    Email.send({
+                        Host : "smtp.elasticemail.com",
+                        Username : "mgia.130195@gmail.com",
+                        Password : "AF04DC4EC265F48A267230528E4E4F8EF91A",
+                        To : 'iranmendez@correo.xochicalco.edu.mx',
+                        From : "mgia.130195@gmail.com",
+                        Subject : "Alta de usuarios",
+                        Body : "Solicitud de alta de usuarios en Moodle"
+                    }).then(
+                        message => alert(message)
+                    );
+                }*/
             }
 
             //lowercase function
@@ -208,7 +227,12 @@
                 e.value = e.value.toLowerCase();
             }
 
+
+
         </script>  
+
+        <script src="https://smtpjs.com/v3/smtp.js">
+        </script>
 
 
 <!--         
