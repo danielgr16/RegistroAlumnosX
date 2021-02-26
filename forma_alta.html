@@ -73,17 +73,16 @@
                     <hr>
 
                     <div class="row mt-5 d-none" id="gradoMoodle">
-                    <!-- <div class="row mt-5" id="gradoMoodle"> -->
                         <div class="col-10 offset-sm-1 mb-3">
                             <span>Seleccione la plataforma de Moodle en que se daran de alta los usuarios:</span>
                         </div>
                         <div class="col-10 offset-sm-1 w-100 d-none d-sm-block">
                             <div class="btn-group col-10">
                                 <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked/>
-                                <label class="btn btn-secondary" for="option1">LICENCIATURA</label>
+                                <label class="btn btn-secondary" for="option1">PREPARATORIA</label>
                               
                                 <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" />
-                                <label class="btn btn-secondary" for="option2">PREPARATORIA</label>
+                                <label class="btn btn-secondary" for="option2">LICENCIATURA</label>
                               
                                 <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" />
                                 <label class="btn btn-secondary" for="option3">POSGRADOS</label>
@@ -129,12 +128,18 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-            <div id="usuarios"></div>
+            <div id="usuarios">
+                <table class="table" id="vista-previa">
+                    <thead>
+                        <tr>
+                            <th scope="col">Número</th>
+                            <th scope="col">Nombre de usuario</th>
+                            <th scope="col">Combre completo</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
           </div>
-=======
-        </div>
->>>>>>> 4fc01cff9cc98c8b934fa787c0825c3cf8cc81df
         
 
         <!-- <button onclick="addrow()" id="btnadd"> Agregar </button> 
@@ -168,8 +173,8 @@
 
             function mostrar_grados() {
 
-                let div = document.getElementById("grado");
-                div.innerHTML = "<div> moodle </div>";
+            let div = document.getElementById("grado");
+            div.innerHTML = "<div> moodle </div>";
             }
 
             function mostrar_seleccion_grado() {
@@ -187,7 +192,7 @@
             function addrow() {
                 if (document.getElementById("user").value != "" && document.getElementById("first").value != "" && document.getElementById("last").value != ""){
                     if(document.getElementById("cbmoodle").checked == true || document.getElementById("cboffice").checked == true){
-                        if(document.getElementById("cbmoodle").checked == true) {
+                        if(document.getElementById("cbmoodle").checked == true){
                             csvFileDataMoodle.push([
                                 document.getElementById("user").value,
                                 '123456',
@@ -201,7 +206,7 @@
                             document.getElementById("gradoMoodle").classList.add('d-block');
                         }
 
-                        if(document.getElementById("cboffice").checked == true) {
+                        if(document.getElementById("cboffice").checked == true){
                             csvFileDataOffice.push([
                                 document.getElementById("user").value+'@tij.xochicalco.edu.mx',
                                 document.getElementById("first").value,
@@ -228,15 +233,12 @@
                         document.getElementById("last").value = "";
                         document.getElementById("user").focus();
                         document.getElementById("btndownload").className += " btn-active";
-<<<<<<< HEAD
 
                         
                         idFilaMoodle++;
                         var user = document.getElementById("usuarios");
+                        //user.insertAdjacentHTML("beforeend", "<p>" + idFilaMoodle + ".- " +csvFileDataMoodle[csvFileDataMoodle.length - 1] + "<button>Eliminar</button></p>");
                         user.insertAdjacentHTML("beforeend", "<p>" + idFilaMoodle + ".- " +csvFileDataMoodle[csvFileDataMoodle.length - 1] + "<button>Eliminar</button></p>");
-=======
-                        mostrar_grados("of");
->>>>>>> 4fc01cff9cc98c8b934fa787c0825c3cf8cc81df
                     }      
                     else{
                         alert("Seleccione al menos una opción para agregar alumnos");
@@ -307,8 +309,6 @@
             function minus(e) {
                 e.value = e.value.toLowerCase();
             }
-
-
 
         </script>  
 
