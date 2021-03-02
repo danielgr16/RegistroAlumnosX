@@ -3,6 +3,7 @@
             var csvFileDataMoodle = [];
             var csvFileDataOffice = [];
             var idFilaMoodle = 0;
+            var numeroUsuario = [];
             document.getElementById("btndownload").disabled = true;
 
             var boolTemporal = 0;
@@ -56,6 +57,8 @@
 
                             document.getElementById("gradoMoodle").classList.remove('d-none');
                             document.getElementById("gradoMoodle").classList.add('d-block');
+
+                            agregarFilaMoodle();
                         }
 
                         if(document.getElementById("cboffice").checked == true){
@@ -77,6 +80,8 @@
                                 '',
                                 ''
                             ]);
+
+                            agregarFilaOffice();
                         }
 
                         document.getElementById("usuarios").classList.remove('d-none');
@@ -87,12 +92,6 @@
                         document.getElementById("last").value = "";
                         document.getElementById("user").focus();
                         document.getElementById("btndownload").className += " btn-active";
-
-                        
-                        idFilaMoodle++;
-                        var user = document.getElementById("usuarios");
-                        //user.insertAdjacentHTML("beforeend", "<p>" + idFilaMoodle + ".- " +csvFileDataMoodle[csvFileDataMoodle.length - 1] + "<button>Eliminar</button></p>");
-                        user.insertAdjacentHTML("beforeend", "<p>" + idFilaMoodle + ".- " +csvFileDataMoodle[csvFileDataMoodle.length - 1] + "<button>Eliminar</button></p>");
                     }      
                     else{
                         alert("Seleccione al menos una opción para agregar alumnos");
@@ -168,4 +167,44 @@
             function dividir_lineas() {
                 var str = "How are you doing today?";
                 var res = str.split(" ");
+            }
+
+            function agregarFilaMoodle(){
+                for (var i = 0; document.getElementById("vista-previa-moodle").getElementsByClassName("fila").length > 0; i++){
+                    var borrar = document.getElementById("filaMoodle"+(i+1))
+                    borrar.remove();
+                }
+                
+                for(var i = 0 ; i < csvFileDataMoodle.length ; i++){
+                    var user = document.getElementById("vista-previa-moodle");
+                    user.insertAdjacentHTML("beforeend", "<tr class=fila id="+"filaMoodle"+(i+1)+"><td>"+(i+1)+"</td><td>"+csvFileDataMoodle[i][0]+"</td><td>"+csvFileDataMoodle[i][2]+" "+csvFileDataMoodle[i][3]+"</td><td><button onclick=eliminarFilaMoodle("+(i+1)+")>Eliminar</button></td></tr>");
+                }
+            }
+
+            function eliminarFilaMoodle(fila){
+                
+                //Eliminar alumno del arreglo de alumnos de Moodle
+                csvFileDataMoodle.splice((fila-1), 1);
+
+                agregarFilaMoodle();
+            }
+
+            function agregarFilaOffice(){
+                for (var i = 0; document.getElementById("vista-previa-office").getElementsByClassName("fila").length > 0; i++){
+                    var borrar = document.getElementById("filaOffice"+(i+1))
+                    borrar.remove();
+                }
+                
+                for(var i = 0 ; i < csvFileDataOffice.length ; i++){
+                    var user = document.getElementById("vista-previa-office");
+                    user.insertAdjacentHTML("beforeend", "<tr class=fila id="+"filaOffice"+(i+1)+"><td>"+(i+1)+"</td><td>"+csvFileDataOffice[i][0]+"</td><td>"+csvFileDataOffice[i][3]+"</td><td><button onclick=eliminarFilaOffice("+(i+1)+")>Eliminar</button></td></tr>");
+                }
+            }
+
+            function eliminarFilaOffice(fila){
+                
+                //Eliminar alumno del arreglo de alumnos de Office
+                csvFileDataOffice.splice((fila-1), 1);
+
+                agregarFilaOffice();
             }
