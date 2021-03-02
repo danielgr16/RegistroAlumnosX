@@ -71,14 +71,32 @@
                     </div>
                     <div id="usuarios" class="d-none">
                         <h4>Usuarios de Moodle</h4>
-                        <table class="table" id="vista-previa">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">Número</th>
                                     <th scope="col">Nombre de usuario</th>
-                                    <th scope="col">Combre completo</th>
+                                    <th scope="col">Nombre completo</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
+                            <tbody  id="vista-previa-moodle">
+
+                            </tbody>
+                        </table>
+                        <h4>Usuarios de Office</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Número</th>
+                                    <th scope="col">Correo electrónico</th>
+                                    <th scope="col">Nombre para mostrar</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody  id="vista-previa-office">
+
+                            </tbody>
                         </table>
                     </div>
                     <hr>
@@ -146,8 +164,7 @@
 
         <script src="js/script.js"></script>  
 
-        <script src="https://smtpjs.com/v3/smtp.js">
-        </script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
 
 
 <!--         
