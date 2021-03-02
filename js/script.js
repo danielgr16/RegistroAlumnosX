@@ -163,3 +163,9 @@
             function minus(e) {
                 e.value = e.value.toLowerCase();
             }
+
+
+            function dividir_lineas() {
+                var str = "How are you doing today?";
+                var res = str.split(" ");
+            }
