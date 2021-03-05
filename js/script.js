@@ -166,6 +166,12 @@
                 e.value = e.value.toLowerCase();
             }
 
+
+            function dividir_lineas() {
+                var str = "How are you doing today?";
+                var res = str.split(" ");
+            }
+
             function agregarFilaMoodle(){
                 for (var i = 0; document.getElementById("vista-previa-moodle").getElementsByClassName("fila").length > 0; i++){
                     var borrar = document.getElementById("filaMoodle"+(i+1))
