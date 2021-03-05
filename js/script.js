@@ -1,5 +1,8 @@
             //create CSV file data in an array
 
+            var matriculaMasivoMoodle = [];
+            var nombreMasivoMoodle = [];
+            var apellidoMasivoMoodle = [];
             var csvFileDataMoodle = [];
             var csvFileDataOffice = [];
             var idFilaMoodle = 0;
@@ -201,4 +204,22 @@
                 csvFileDataOffice.splice((fila-1), 1);
 
                 agregarFilaOffice();
+            }
+
+            function agregarMoodleMasivo(){
+                var area1 = document.getElementById("matriculaMasivoMoodle");             
+                var matricula = area1.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
+
+                var area2 = document.getElementById("nombreMasivoMoodle");             
+                var nombre = area2.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
+
+                var area3 = document.getElementById("apellidoMasivoMoodle");             
+                var apellido = area3.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
+
+                for(var i = 0 ; i < matricula.length ; i++){
+                    matriculaMasivoMoodle.push(matricula[i]);
+                    nombreMasivoMoodle.push(nombre[i]);
+                    apellidoMasivoMoodle.push(apellido[i]);
+                    document.getElementById("vistaAltaMasivaMoodle").insertAdjacentHTML("beforeend", "<tr><td>"+(i+1)+"</td><td>"+matriculaMasivoMoodle[i]+"</td><td>"+nombreMasivoMoodle[i]+" "+apellidoMasivoMoodle[i]+"</td></tr>");
+                }
             }
