@@ -1,5 +1,8 @@
             //create CSV file data in an array
 
+            var matricula;
+            var nombre;
+            var apellido;
             var matriculaMasivoMoodle = [];
             var nombreMasivoMoodle = [];
             var apellidoMasivoMoodle = [];
@@ -28,11 +31,9 @@
             }
 
             function mostrar_grados() {
-
-            let div = document.getElementById("grado");
-            div.innerHTML = "<div> moodle </div>";
+                let div = document.getElementById("grado");
+                div.innerHTML = "<div> moodle </div>";
             }
-
             function mostrar_seleccion_grado() {
                 if (boolTemporal == 0) {
                     boolTemporal = 1;
@@ -107,7 +108,6 @@
                 
             //create a user-defined function to download CSV file   
             function download_csv_file() {  
-
                 //cbMoodle
                 //cbOffice
 
@@ -166,12 +166,6 @@
                 e.value = e.value.toLowerCase();
             }
 
-
-            function dividir_lineas() {
-                var str = "How are you doing today?";
-                var res = str.split(" ");
-            }
-
             function agregarFilaMoodle(){
                 for (var i = 0; document.getElementById("vista-previa-moodle").getElementsByClassName("fila").length > 0; i++){
                     var borrar = document.getElementById("filaMoodle"+(i+1))
@@ -185,7 +179,6 @@
             }
 
             function eliminarFilaMoodle(fila){
-                
                 //Eliminar alumno del arreglo de alumnos de Moodle
                 csvFileDataMoodle.splice((fila-1), 1);
 
@@ -205,27 +198,61 @@
             }
 
             function eliminarFilaOffice(fila){
-                
                 //Eliminar alumno del arreglo de alumnos de Office
                 csvFileDataOffice.splice((fila-1), 1);
-
                 agregarFilaOffice();
             }
 
             function agregarMoodleMasivo(){
+                var temp;
                 var area1 = document.getElementById("matriculaMasivoMoodle");             
-                var matricula = area1.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
+                matricula = area1.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
 
                 var area2 = document.getElementById("nombreMasivoMoodle");             
-                var nombre = area2.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
+                nombre = area2.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
 
                 var area3 = document.getElementById("apellidoMasivoMoodle");             
-                var apellido = area3.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
+                apellido = area3.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
 
-                for(var i = 0 ; i < matricula.length ; i++){
-                    matriculaMasivoMoodle.push(matricula[i]);
-                    nombreMasivoMoodle.push(nombre[i]);
-                    apellidoMasivoMoodle.push(apellido[i]);
-                    document.getElementById("vistaAltaMasivaMoodle").insertAdjacentHTML("beforeend", "<tr><td>"+(i+1)+"</td><td>"+matriculaMasivoMoodle[i]+"</td><td>"+nombreMasivoMoodle[i]+" "+apellidoMasivoMoodle[i]+"</td></tr>");
+                if(matricula.length == nombre.length && matricula.length == apellido.length){
+                    for(var i = 0 ; document.getElementById("vistaAltaMasivaMoodle").getElementsByClassName("fila").length > 0 ; i++){
+                        var borrar = document.getElementById("filaMoodleMasivo"+(i+1))
+                        borrar.remove();
+                    }
+    
+                    for(var i = 0 ; i < matricula.length ; i++){
+                        matriculaMasivoMoodle.push(matricula[i]);
+                        nombreMasivoMoodle.push(nombre[i]);
+                        apellidoMasivoMoodle.push(apellido[i]);
+                    }
+    
+                    for(var i = 0 ; i < matriculaMasivoMoodle.length ; i++){
+                        var user = document.getElementById("vistaAltaMasivaMoodle")
+                        user.insertAdjacentHTML("beforeend", "<tr class=fila id="+"filaMoodleMasivo"+(i+1)+"><td>"+(i+1)+"</td><td>"+matriculaMasivoMoodle[i]+"</td><td>"+nombreMasivoMoodle[i]+" "+apellidoMasivoMoodle[i]+"</td><td><button onclick=eliminarFilaMasivoOffice("+(i+1)+")>Eliminar</button></td></tr>");
+                    }
+
+                    document.getElementById("matriculaMasivoMoodle").focus();
+                    document.getElementById("matriculaMasivoMoodle").value = "";
+                    document.getElementById("nombreMasivoMoodle").value = "";
+                    document.getElementById("apellidoMasivoMoodle").value = "";
+                }
+                else{
+                    alert("No sea imbécil");
+                }
+            }
+
+            function eliminarFilaMasivoOffice(fila){
+                matriculaMasivoMoodle.splice((fila-1), 1);
+                nombreMasivoMoodle.splice((fila-1), 1);
+                apellidoMasivoMoodle.splice((fila-1), 1);
+
+                for(var i = 0 ; document.getElementById("vistaAltaMasivaMoodle").getElementsByClassName("fila").length > 0 ; i++){
+                    var borrar = document.getElementById("filaMoodleMasivo"+(i+1))
+                    borrar.remove();
+                }
+
+                for(var i = 0 ; i < matriculaMasivoMoodle.length ; i++){
+                    var user = document.getElementById("vistaAltaMasivaMoodle")
+                    user.insertAdjacentHTML("beforeend", "<tr class=fila id="+"filaMoodleMasivo"+(i+1)+"><td>"+(i+1)+"</td><td>"+matriculaMasivoMoodle[i]+"</td><td>"+nombreMasivoMoodle[i]+" "+apellidoMasivoMoodle[i]+"</td><td><button onclick=eliminarFilaMasivoOffice("+(i+1)+")>Eliminar</button></td></tr>");
                 }
             }
